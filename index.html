@@ -1637,7 +1637,13 @@ if(!loadData('mis_login_users',null)){
   };
   saveData('mis_login_users', loginUsers);
 }
-let LOGIN_USERS = loadData('mis_login_users', {});
+let _lu_stored = loadData('mis_login_users', null);
+const _lu_defaults = {
+  director:{pass:'1234',role:'director',name:'Горзина Л.П.',label:'👑 Руководитель',cls:'dir',initials:'ГЛ',color:'linear-gradient(135deg,#059669,#4a6cf7)'},
+  doctor:  {pass:'1234',role:'doctor',  name:'Шкарпов А.А.',label:'🩺 Врач',cls:'doc',initials:'ША',color:'linear-gradient(135deg,#0284c7,#0ea5e9)'},
+  admin:   {pass:'1234',role:'admin',   name:'Администратор',label:'📋 Администратор',cls:'adm',initials:'АД',color:'linear-gradient(135deg,#d97706,#f59e0b)'},
+};
+let LOGIN_USERS = (_lu_stored && Object.keys(_lu_stored).length > 0) ? _lu_stored : _lu_defaults;
 
 let CU = null, curRole = 'director';
 let pendingDelPtId = null, pendingDelUsrId = null;
